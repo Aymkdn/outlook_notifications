@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Outlook Custom Notifications</title>
+    <style>
+      body {
+        width:500px;
+        height:485px;
+        font-size:16px;
+      }
+      body > div {
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 10px;
+        background-color: #EEE;
+      }
+      .switch {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .switch input {
+        display: none;
+      }
+
+      .slider {
+        position: relative;
+        display: inline-block;
+        background-color: red;
+        border-radius: 34px;
+        transition: 0.4s;
+        width: 38px;
+        height: 18px;
+        margin-left:10px;
+      }
+
+      .slider:before {
+        position: absolute;
+        display: inline-block;
+        top: 2px;
+        left: 4px;
+        content: "";
+        height: 14px;
+        width: 14px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: green;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(15px);
+      }
+
+      .toggle-visibility {
+        display:none;
+      }
+      div:has(:checked) + .toggle-visibility {
+        display:block;
+      }
+
+      .delete {
+        height: 20px;
+        line-height: 13px;
+        cursor: pointer;
+        margin-left:10px;
+      }
+      .delete > i {
+        display:none;
+      }
+      .delete:hover > i {
+        display: inline;
+      }
+      input[type="file"] + .delete {
+        display: none;
+      }
+
+      .sound_control {
+        margin-top:5px;
+        display: flex;
+        align-items: center;
+      }
+
+      /* hide file selection when we have the sound player */
+      input[type="file"]:has(+ audio) {
+        display:none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label class="switch">
+        <span class="label">Replace the Outlook sound for <b>calendar reminders</b>?</span>
+        <input type="checkbox" name="replace_calendar_sound">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-visibility">
+      <label>
+        <span>Choose the MP3 file to use to replace the <b>calendar reminders sound</b>:</span>
+        <div class="sound_control">
+          <input type="file" id="file_calendar">
+          <button type="button" class="delete" data-target="calendar">&#10007; <i>delete</i></button>
+        </div>
+      </label>
+    </div>
+    <div>
+      <label class="switch">
+        <span class="label">Activate desktop notifications for <b>calendar reminders</b>?</span>
+        <input type="checkbox" name="activate_calendar_notification">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div>
+      <label class="switch">
+        <span class="label">Replace the Outlook sound for <b>new emails</b>?</span>
+        <input type="checkbox" name="replace_email_sound">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-visibility">
+      <label>
+        <span>Choose the MP3 file to use to replace the <b>new emails sound</b>:</span>
+        <div class="sound_control">
+          <input type="file" id="file_email">
+          <button type="button" class="delete" data-target="email">&#10007; <i>delete</i></button>
+        </div>
+      </label>
+    </div>
+    <div style="background-color:rgba(200,50,50,0.99);color:#FFF;margin-top:20px">
+      Make sure to <b>active "Play a sound"</b> for both email and calendar in <b>Outlook Settings > General > Notifications</b>.<br><br>
+      Note: you need to reload the page to apply the extension's settings.
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

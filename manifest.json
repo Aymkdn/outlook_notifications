@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Web Outlook Custom Notifications",
+  "description": "Change the notification sounds for new emails and calendar reminders for Web Outlook",
+  "version": "1.0.0",
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["icons_calendar_notification.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://outlook.live.com/mail/*",
+        "https://outlook.office.com/mail/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
