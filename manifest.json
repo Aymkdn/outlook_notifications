@@ -2,11 +2,16 @@
   "manifest_version": 3,
   "name": "Web Outlook Custom Notifications",
   "description": "Change the notification sounds for new emails and calendar reminders for Web Outlook",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "permissions": [
     "storage",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "notifications"
   ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

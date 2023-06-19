@@ -13,6 +13,13 @@ chrome.storage.local.get("activate_calendar_notification")
     if (el) el.checked=true;
   }
 });
+chrome.storage.local.get("replace_email_sound")
+.then(data => {
+  if (data.replace_email_sound) {
+    let el = document.querySelector('input[name="replace_email_sound"]');
+    if (el) el.checked=true;
+  }
+});
 
 // convert an array buffer to a base64 string
 function arrayBufferToBase64(buffer) {
